@@ -1,17 +1,19 @@
 package com.frontlinehelper.app
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.material3.Text
-import androidx.compose.material3.Surface
-class MainActivity : ComponentActivity() {
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            Surface {
-                Text("Frontline Helper - Main")
-            }
-        }
+        
+        // Create a simple text view for now
+        val textView = TextView(this)
+        textView.text = "Frontline Helper - Main"
+        textView.textSize = 18f
+        textView.setPadding(50, 50, 50, 50)
+        
+        setContentView(textView)
     }
 }
