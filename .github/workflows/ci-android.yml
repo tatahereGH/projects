@@ -53,18 +53,21 @@ jobs:
         run: |
           echo "Repository root contents:"
           ls -la
-          echo "Looking for gradle wrapper files:"
-          ls -la gradle || true
-          ls -la gradle/wrapper || true
-          echo "gradlew script exists:"
-          if [ -f ./gradlew ]; then echo "gradlew exists"; else echo "gradlew missing"; fi
-          echo "Attempting to run ./gradlew --version (may fail if wrapper missing):"
-          if [ -x ./gradlew ]; then ./gradlew --version || true; else echo "gradlew not executable or missing"; fi
+          echo "Android directory contents:"
+          ls -la android/ || true
+          echo "Looking for gradle wrapper files in android/:"
+          ls -la android/gradle || true
+          ls -la android/gradle/wrapper || true
+          echo "gradlew script exists in android/:"
+          if [ -f android/gradlew ]; then echo "android/gradlew exists"; else echo "android/gradlew missing"; fi
+          echo "Attempting to run android/gradlew --version:"
+          if [ -x android/gradlew ]; then cd android && ./gradlew --version || true; else echo "android/gradlew not executable or missing"; fi
 
       - name: Run Gradle tasks (ktlint, assemble, tests) with Gradle action
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: '8.2'
           arguments: ktlintCheck :app:assembleDebug test
+          build-root-directory: android
         continue-on-error: false
 
