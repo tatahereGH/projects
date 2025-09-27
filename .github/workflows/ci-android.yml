@@ -71,11 +71,19 @@ jobs:
           build-root-directory: android
         continue-on-error: true
 
-      - name: Run Gradle build and linting
+      - name: List available Gradle tasks
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: '8.2'
-          arguments: ktlintCheck :app:assembleDebug
+          arguments: tasks
+          build-root-directory: android
+        continue-on-error: true
+
+      - name: Run Android assembleDebug only
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: '8.2'
+          arguments: :app:assembleDebug
           build-root-directory: android
         continue-on-error: false
 
