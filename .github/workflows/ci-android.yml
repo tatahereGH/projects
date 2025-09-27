@@ -2,9 +2,12 @@ name: Android CI
 
 on:
   push:
-    branches: [ main, master ]
+    # include main branches and feature branches (feat/*)
+    branches: [ main, master, 'feat/**' ]
   pull_request:
     branches: [ main, master ]
+  # allow manual workflow dispatch
+  workflow_dispatch: {}
 
 jobs:
   build:
