@@ -48,6 +48,19 @@ jobs:
           yes | sdkmanager --licenses || true
           sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest" || true
 
+      - name: Diagnostic - list repo & gradle wrapper
+        shell: bash
+        run: |
+          echo "Repository root contents:"
+          ls -la
+          echo "Looking for gradle wrapper files:"
+          ls -la gradle || true
+          ls -la gradle/wrapper || true
+          echo "gradlew script exists:"
+          if [ -f ./gradlew ]; then echo "gradlew exists"; else echo "gradlew missing"; fi
+          echo "Attempting to run ./gradlew --version (may fail if wrapper missing):"
+          if [ -x ./gradlew ]; then ./gradlew --version || true; else echo "gradlew not executable or missing"; fi
+
       - name: Run Gradle tasks (ktlint, assemble, tests) with Gradle action
         uses: gradle/gradle-build-action@v2
         with:
