@@ -27,6 +27,24 @@ jobs:
           ndk: ''
           cache: true
 
+      - name: Cache Gradle & Android
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper/
+            ~/.android
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Install Android SDK components & accept licenses
+        shell: bash
+        run: |
+          echo "Installing Android SDK components"
+          yes | sdkmanager --licenses || true
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest" || true
+
       - name: Run Gradle tasks (ktlint, assemble, tests) with Gradle action
         uses: gradle/gradle-build-action@v2
         with:
