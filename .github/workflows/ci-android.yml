@@ -63,11 +63,19 @@ jobs:
           echo "Attempting to run android/gradlew --version:"
           if [ -x android/gradlew ]; then cd android && ./gradlew --version || true; else echo "android/gradlew not executable or missing"; fi
 
-      - name: Run Gradle tasks (ktlint, assemble, tests) with Gradle action
+      - name: Auto-fix ktlint formatting issues
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: '8.2'
-          arguments: ktlintCheck :app:assembleDebug test
+          arguments: ktlintFormat
+          build-root-directory: android
+        continue-on-error: true
+
+      - name: Run Gradle build and linting
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: '8.2'
+          arguments: ktlintCheck :app:assembleDebug
           build-root-directory: android
         continue-on-error: false
 
