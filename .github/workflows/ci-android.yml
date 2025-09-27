@@ -27,6 +27,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Build Debug
-        run: ./gradlew :app:assembleDebug --no-daemon
+        run: ./gradlew ktlintCheck :app:assembleDebug --no-daemon
       - name: Run unit tests
         run: ./gradlew test --no-daemon

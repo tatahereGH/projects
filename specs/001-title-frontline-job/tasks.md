@@ -11,6 +11,7 @@ T001 — Scaffold Android project and CI [P] [X]
 T002 — Add project linting & formatting [P]
 - Add Kotlin linting (ktlint) and formatting enforcement to Gradle and CI. Configure pre-commit hook guidance in README.
 - Files: `android/build.gradle`, `.github/workflows/ci-android.yml`, `.editorconfig`
+ - Status: Completed 2025-09-26 — added ktlint plugin to Gradle, `.editorconfig`, and CI step running `ktlintCheck`.
 
 T003 — Create Room entities & migrations for User/Job/FilterPreferences [P]
 - Implement Room `@Entity` classes for `User`, `Job`, `FilterPreferences`, `AcceptedJob`, and `AuditLogEntry` per `data-model.md`. Add DAO interfaces and an initial migration. Include unit tests that verify basic CRUD operations using an in-memory Room DB.
