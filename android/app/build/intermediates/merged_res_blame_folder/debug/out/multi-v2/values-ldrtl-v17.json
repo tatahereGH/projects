@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.frontlinehelper.app-mergeDebugResources-29:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\khanf\\.gradle\\caches\\transforms-3\\7fcfebf2c99525212048187b8060f89b\\transformed\\material-1.9.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,191",
+                        "endColumns": "135,140",
+                        "endOffsets": "186,327"
+                    }
+                }
+            ]
+        }
+    ]
+}
